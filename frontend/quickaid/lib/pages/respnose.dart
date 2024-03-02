@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:quickaid/resources/api.dart';
 import 'package:quickaid/resources/local_storage.dart';
 import 'package:quickaid/resources/location.dart';
+import 'package:quickaid/resources/text_to_speach.dart';
 import 'package:quickaid/widget/text_container.dart';
 
 class ApiHandler extends StatefulWidget {
@@ -48,6 +49,9 @@ class _ApiHandlerState extends State<ApiHandler> {
   void initState() {
     super.initState();
     _getData(); // Asynchronously fetch the data when the widget is initialized
+    SpeakText speak = SpeakText(textToSpeak: _text);
+    speak.initializeTTS();
+    speak.speak();
   }
 
   @override
