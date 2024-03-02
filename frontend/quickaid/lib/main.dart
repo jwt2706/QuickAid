@@ -14,10 +14,11 @@ class MainApp extends StatelessWidget {
       title: 'Material App with Theme',
       // Here begins the spell of theming
       theme: ThemeData(
-        // The brightness, dark as a moonless night or light as the sun at its zenith
-        brightness: Brightness.light,
-        // Primary swatch, the royal color that adorns your app's domain
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.red,
+          // ···
+          brightness: Brightness.light,
+        ),
         // Font family, the scribe that pens the text in your realm
         fontFamily: 'Montserrat',
         // Text theme, the decree that dictates the style of thy texts

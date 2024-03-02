@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quickaid/widget/voice.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -8,15 +9,35 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool micOn = true;
+  final GlobalKey<MicFloatingButtonState> micKey =
+      GlobalKey<MicFloatingButtonState>();
+
+  void handleMic() {
+    setState(() {
+      micOn = !micOn;
+      if (micOn) {
+        micKey.currentState?.startAnimation();
+      } else {
+        micKey.currentState?.stopAnimation();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: Text("Hello"),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => print("working"),
-        tooltip: 'voice',
-        child: Icon(Icons.mic),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        color: Theme.of(context).primaryColor,
+        shape: CircularNotchedRectangle(),
+        child: Container(height: 50.0),
+      ),
+      floatingActionButton: MicFloatingButton(
+        key: micKey,
+        onPressed: handleMic,
       ),
     );
   }
