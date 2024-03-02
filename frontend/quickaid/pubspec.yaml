@@ -7,8 +7,10 @@ environment:
   sdk: ">=3.2.3 <4.0.0"
 
 dependencies:
+  avatar_glow: ^3.0.1
   flutter:
     sdk: flutter
+  highlight_text: ^1.7.0
   speech_to_text: ^6.6.1
 
 dev_dependencies:
