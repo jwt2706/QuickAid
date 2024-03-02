@@ -18,6 +18,15 @@ class TextHolder extends StatelessWidget {
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor.withOpacity(0.7),
               borderRadius: BorderRadius.circular(20.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black
+                      .withOpacity(0.3), // Shadow color with opacity
+                  spreadRadius: 3, // Spread radius
+                  blurRadius: 8, // Blur radius
+                  offset: Offset(2, 4), // Changes position of shadow
+                ),
+              ],
             ),
             child: Text(
               text,

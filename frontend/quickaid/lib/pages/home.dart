@@ -83,7 +83,19 @@ class _HomeState extends State<Home> {
           color: Colors.white, // Changes the icon color to red
         ),
       ),
-      body: TextHolder(text: _text),
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage('assets/bg.webp'),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(0.7), // Adjust the opacity as needed
+            BlendMode
+                .dstATop, // This blend mode applies the color filter on top of the image
+          ),
+        )),
+        child: TextHolder(text: _text),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).primaryColor,

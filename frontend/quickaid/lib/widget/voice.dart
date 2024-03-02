@@ -57,7 +57,9 @@ class MicFloatingButtonState extends State<MicFloatingButton>
       child: FloatingActionButton(
         onPressed: widget.onPressed,
         tooltip: 'Voice',
-        child: Icon(widget.icon),
+        child: Icon(
+          widget.icon,
+        ),
       ),
     );
   }
