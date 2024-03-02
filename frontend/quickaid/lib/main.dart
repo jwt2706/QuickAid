@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quickaid/widget/home.dart';
+import 'package:quickaid/pages/home.dart';
 
 void main() {
   runApp(const MainApp());
