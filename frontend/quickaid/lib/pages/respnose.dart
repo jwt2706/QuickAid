@@ -20,6 +20,7 @@ class _ApiHandlerState extends State<ApiHandler> {
   double lat = 0, long = 0;
 
   Future<void> _getData() async {
+    await _fetchLocation();
     try {
       String responseText =
           await call.sendTranscription(widget.text, long, lat);
@@ -33,7 +34,7 @@ class _ApiHandlerState extends State<ApiHandler> {
     }
   }
 
-  void _fetchLocation() async {
+  Future<void> _fetchLocation() async {
     try {
       Position position = await location.getCurrentLocation();
       long = position.longitude;
@@ -46,7 +47,6 @@ class _ApiHandlerState extends State<ApiHandler> {
   @override
   void initState() {
     super.initState();
-    _fetchLocation();
     _getData(); // Asynchronously fetch the data when the widget is initialized
   }
 
