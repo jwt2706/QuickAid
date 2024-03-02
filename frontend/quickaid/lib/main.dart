@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quickaid/widget/home.dart';
+import 'package:quickaid/pages/home.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,6 +11,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Material App with Theme',
       // Here begins the spell of theming
       theme: ThemeData(
