@@ -20,6 +20,7 @@ class Api {
         // If the server returns a 200 OK response, parse the JSON
         final data = json.decode(response.body);
         return '${data['message']}';
+        // return transcriptionText;
       } else {
         // If the server did not return a 200 OK response,
         // then return an error message

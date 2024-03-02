@@ -44,12 +44,16 @@ class _HomeState extends State<Home> {
   void _stopListening() {
     _speech.stop();
     setState(() => _isListening = false);
+    micKey.currentState?.stopAnimation();
   }
 
-  void _stopListeningPause() {
-    _speech.stop();
-    setState(() => _isListening = false);
-    micKey.currentState?.stopAnimation();
+  void moveNextPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ApiHandler(text: _text),
+      ),
+    );
   }
 
   void handleMic() {
@@ -59,12 +63,6 @@ class _HomeState extends State<Home> {
         micKey.currentState?.startAnimation();
       } else {
         micKey.currentState?.stopAnimation();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ApiHandler(text: _text),
-          ),
-        );
       }
     });
     _listen();
@@ -111,17 +109,15 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             Ink(
-              decoration: ShapeDecoration(
+              decoration: const ShapeDecoration(
                 color: Colors.redAccent,
-                shape: const CircleBorder(),
+                shape: CircleBorder(),
               ),
               child: IconButton(
-                icon: const Icon(Icons.stop),
+                icon: const Icon(Icons.arrow_forward),
                 onPressed: () {
                   // Logic to stop the microphone
-                  if (_isListening) {
-                    _stopListeningPause();
-                  }
+                  moveNextPage();
                 },
               ),
             ),
