@@ -49,3 +49,4 @@ frontend/quickaid/macos/
 frontend/quickaid/linux/
 frontend/quickaid/build/
 backend/node_modules/
+.vscode/
