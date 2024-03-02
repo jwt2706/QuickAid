@@ -9,8 +9,8 @@ class Api {
   Future<String> sendTranscription(
       String transcriptionText, double long, double lat) async {
     final headers = {"Content-Type": "application/json"};
-    final jsonBody =
-        json.encode({"transcript": transcriptionText, "long": lat, "lat": lat});
+    final jsonBody = json
+        .encode({"transcript": transcriptionText, "long": long, "lat": lat});
 
     try {
       final response =

@@ -59,6 +59,7 @@ class MicFloatingButtonState extends State<MicFloatingButton>
         tooltip: 'Voice',
         child: Icon(
           widget.icon,
+          size: 40,
         ),
       ),
     );
