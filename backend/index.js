@@ -49,7 +49,7 @@ app.get("/user/:id", (req, res) => {
 app.post("/transcript", async (req, res) => {
   const transcript = req.body.transcript;
   const lat = req.body.lat
-  const lang = req.body.lang
+  const long = req.body.long
   console.log("Received transcript:", transcript);
   if (transcript === "burn") {
     call("Ottawa", "third degree burn");
@@ -68,7 +68,7 @@ app.post("/transcript", async (req, res) => {
     //   res.status(500).json({ message: "Error fetching GIF" });
     // }
   } else {
-    res.json({ message: "Transcript received", transcript: transcript,lat: lat, lang:lang });
+    res.json({ message: "Transcript received", transcript: transcript,lat: lat, long:long });
 
   }
 });
