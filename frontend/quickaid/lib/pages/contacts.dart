@@ -1,6 +1,6 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:quickaid/resources/emergency_contact.dart';
+import 'package:quickaid/widget/emergency_contact_list_item.dart';
 
 class Contacts extends StatefulWidget {
   const Contacts({super.key});
@@ -10,7 +10,7 @@ class Contacts extends StatefulWidget {
 }
 
 class _ContactsState extends State<Contacts> {
-
+  List<EmergencyContact> emergencyContacts = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,11 +32,12 @@ class _ContactsState extends State<Contacts> {
             color: Colors.white, // Changes the icon color to white
           ),
           onPressed: () {
-            // Add your action here
+            emergencyContacts.add(EmergencyContact("dan", "8197128889", "d@gmail.com", Relationship.friend));
           },
         ),
       ],
       ),
+      body: EmergencyContactList(emergencyContacts: emergencyContacts),
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).primaryColor,
         shape: const CircularNotchedRectangle(),
