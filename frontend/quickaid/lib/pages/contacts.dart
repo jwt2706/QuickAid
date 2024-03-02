@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quickaid/resources/emergency_contact.dart';
-import 'package:quickaid/widget/emergency_contact_list_item.dart';
+import 'package:quickaid/widget/emergency_contact_list.dart';
 
 class Contacts extends StatefulWidget {
   const Contacts({super.key});
@@ -32,7 +32,9 @@ class _ContactsState extends State<Contacts> {
             color: Colors.white, // Changes the icon color to white
           ),
           onPressed: () {
-            emergencyContacts.add(EmergencyContact("dan", "8197128889", "d@gmail.com", Relationship.friend));
+            setState(() {
+              emergencyContacts.add(EmergencyContact("dan", "...", "d@gmail.com", Relationship.friend));
+            });
           },
         ),
       ],

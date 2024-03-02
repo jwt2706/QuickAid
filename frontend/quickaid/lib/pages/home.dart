@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:quickaid/pages/contacts.dart';
 import 'package:quickaid/pages/respnose.dart';
-import 'package:quickaid/resources/local_storage.dart';
 import 'package:quickaid/widget/text_container.dart';
 import 'package:quickaid/widget/voice.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;

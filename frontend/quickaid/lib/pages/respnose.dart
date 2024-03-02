@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quickaid/resources/api.dart';
-import 'package:quickaid/resources/local_storage.dart';
 import 'package:quickaid/widget/text_container.dart';
 
 class ApiHandler extends StatefulWidget {
