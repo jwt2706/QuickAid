@@ -44,21 +44,27 @@ class _HomeState extends State<Home> {
   void _stopListening() {
     _speech.stop();
     setState(() => _isListening = false);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ApiHandler(text: _text),
-      ),
-    );
+  }
+
+  void _stopListeningPause() {
+    _speech.stop();
+    setState(() => _isListening = false);
+    micKey.currentState?.stopAnimation();
   }
 
   void handleMic() {
     setState(() {
       // micOn = !micOn;
-      if (_isListening) {
+      if (!_isListening) {
         micKey.currentState?.startAnimation();
       } else {
         micKey.currentState?.stopAnimation();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ApiHandler(text: _text),
+          ),
+        );
       }
     });
     _listen();
@@ -86,7 +92,7 @@ class _HomeState extends State<Home> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('assets/bg.webp'),
+          image: const AssetImage('assets/bg.webp'),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
             Colors.black.withOpacity(0.7), // Adjust the opacity as needed
@@ -100,7 +106,27 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).primaryColor,
         shape: const CircularNotchedRectangle(),
-        child: Container(height: 50.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Ink(
+              decoration: ShapeDecoration(
+                color: Colors.redAccent,
+                shape: const CircleBorder(),
+              ),
+              child: IconButton(
+                icon: const Icon(Icons.stop),
+                onPressed: () {
+                  // Logic to stop the microphone
+                  if (_isListening) {
+                    _stopListeningPause();
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: MicFloatingButton(
         key: micKey,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:quickaid/pages/home.dart';
+import 'package:quickaid/pages/instructions.dart';
 import 'package:quickaid/pages/respnose.dart';
 
 void main() {
@@ -34,6 +35,7 @@ class MainApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const Home(),
+        '/instruct': (context) => const Instructions(),
         // '/api': (context) => const ApiHandler(),
       },
     );
