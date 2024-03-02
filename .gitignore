@@ -43,8 +43,8 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-/windows/
-/web/
-/macos/
-/linux/
-/build/
+frontend/quickaid/windows/
+frontend/quickaid/web/
+frontend/quickaid/macos/
+frontend/quickaid/linux/
+frontend/quickaid/build/
