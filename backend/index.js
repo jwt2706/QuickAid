@@ -6,13 +6,39 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+require("dotenv").config()
+
+var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_TOKEN)
+
+app.post("/transcription", (req, res) => {
+  const transcriptionText = req.body.TranscriptionText;
+  console.log("Transcription:", transcriptionText);
+  // Handle the transcription text as needed
+  res.status(200).json({ transcription: transcriptionText });
+
+});
+
+
+async function call(location,injury){
+
+
+    await client.calls.create({
+      twiml: `<Response><Say>There is an emergency, we need an ambulance, it is a ${injury} at ${location}</Say></Response>`,
+      to: '+14372555840',
+      from: '+18285200175'
+    })
+    ;
+    
+}
+
+
 app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
 
-app.get("/about", (req, res) => {
-  res.send("About page");
-});
+
+
+
 
 app.get("/contact", (req, res) => {
   res.send("Contact page");
@@ -27,20 +53,21 @@ app.post("/transcript", async (req, res) => {
   const transcript = req.body.transcript;
   console.log("Received transcript:", transcript);
   if (transcript === "burn") {
-    try {
-      const response = await axios.post("http://localhost:8080/gif", {
-        transcript: "burn",
-      });
-      const gifUrl = response.data.message;
-      res.json({
-        message: "Transcript received",
-        transcript: transcript,
-        image: gifUrl,
-      });
-    } catch (error) {
-      console.error("Error fetching GIF:", error);
-      res.status(500).json({ message: "Error fetching GIF" });
-    }
+    call("Ottawa", "third degree burn")
+    // try {
+    //   const response = await axios.post("http://localhost:8080/gif", {
+    //     transcript: "burn",
+    //   });
+    //   const gifUrl = response.data.message;
+    //   res.json({
+    //     message: "Transcript received",
+    //     transcript: transcript,
+    //     image: gifUrl,
+    //   });
+    // } catch (error) {
+    //   console.error("Error fetching GIF:", error);
+    //   res.status(500).json({ message: "Error fetching GIF" });
+    // }
   } else {
     res.json({ message: "Transcript received", transcript: transcript });
   }
