@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:quickaid/pages/home.dart';
+import 'package:quickaid/pages/respnose.dart';
 
 void main() {
   runApp(const MainApp());
@@ -29,7 +31,11 @@ class MainApp extends StatelessWidget {
           bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),
       ),
-      home: Home(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const Home(),
+        // '/api': (context) => const ApiHandler(),
+      },
     );
   }
 }

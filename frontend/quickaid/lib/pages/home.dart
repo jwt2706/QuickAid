@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:quickaid/pages/respnose.dart';
+import 'package:quickaid/resources/local_storage.dart';
 import 'package:quickaid/widget/text_container.dart';
 import 'package:quickaid/widget/voice.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -14,7 +16,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final GlobalKey<MicFloatingButtonState> micKey =
       GlobalKey<MicFloatingButtonState>();
-  stt.SpeechToText _speech = stt.SpeechToText();
+  final stt.SpeechToText _speech = stt.SpeechToText();
   bool _isListening = false;
   String _text = 'Press the button and start speaking';
 
@@ -42,6 +44,12 @@ class _HomeState extends State<Home> {
   void _stopListening() {
     _speech.stop();
     setState(() => _isListening = false);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ApiHandler(text: _text),
+      ),
+    );
   }
 
   void handleMic() {
