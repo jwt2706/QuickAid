@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:quickaid/pages/contacts.dart';
 import 'package:quickaid/pages/respnose.dart';
 import 'package:quickaid/resources/local_storage.dart';
 import 'package:quickaid/widget/text_container.dart';
@@ -64,6 +65,10 @@ class _HomeState extends State<Home> {
     _listen();
   }
 
+  void _navigateToContactsPage(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Contacts()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,10 +82,15 @@ class _HomeState extends State<Home> {
             fontSize: 30,
           ),
         ),
-        leading: const Icon(
-          Icons.local_hospital,
-          size: 40, // Increases the icon size
-          color: Colors.white, // Changes the icon color to red
+        leading: ElevatedButton(
+          child: const Icon(
+            Icons.local_hospital,
+            size: 40, // Increases the icon size
+            color: Colors.white, // Changes the icon color to red
+          ),
+          onPressed: () {
+            _navigateToContactsPage(context);
+          },
         ),
       ),
       body: TextHolder(text: _text),
