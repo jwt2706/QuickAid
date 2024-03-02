@@ -54,17 +54,43 @@ class EditEmergencyContactDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var newEmergencyContact = emergencyContact;
     return AlertDialog(
-      title: const Text('Emergency Contact Details'),
-      content: Text('Name: ${emergencyContact.name}\nPhone: ${emergencyContact.phoneNumber}'),
+      title: const Text('Edit Contact Info'),
+      content: 
+      Row(children: [
+          const Text('Full Name:', style: TextStyle(fontSize: 16.0),),
+          const SizedBox(width: 10),
+          Expanded(
+            child: TextField(
+              decoration: const InputDecoration(
+                hintText: 'Please enter a full name',
+              ),
+              onChanged: (value) {
+                newEmergencyContact.name = value;
+              },
+            ),
+          ),
+        ],
+      ),
       actions: <Widget>[
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop(); // Close the dialog
-          },
-          child: const Text('Close'),
-        ),
+        Row(children: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              // emergencyContact = newEmergencyContact;
+              Navigator.of(context).pop(); 
+            },
+            child: const Text('Save'),
+          ),
+        ]),
       ],
     );
   }
 }
+
