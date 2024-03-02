@@ -49,6 +49,8 @@
 		<string>This app requires microphone access to record voice</string>
 		<key>NSSpeechRecognitionUsageDescription</key>
 		<string>This app requires speech recognition access to convert speech into text</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>Please provide access to your location so we can notify in case of emrgency </string>
 
 	</dict>
 </plist>

@@ -6,9 +6,11 @@ class Api {
 
   Api({required this.url});
 
-  Future<String> sendTranscription(String transcriptionText) async {
+  Future<String> sendTranscription(
+      String transcriptionText, double long, double lat) async {
     final headers = {"Content-Type": "application/json"};
-    final jsonBody = json.encode({"transcript": transcriptionText});
+    final jsonBody =
+        json.encode({"transcript": transcriptionText, "long": lat, "lat": lat});
 
     try {
       final response =

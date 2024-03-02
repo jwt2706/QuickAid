@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:quickaid/resources/api.dart';
 import 'package:quickaid/resources/local_storage.dart';
+import 'package:quickaid/resources/location.dart';
 import 'package:quickaid/widget/text_container.dart';
 
 class ApiHandler extends StatefulWidget {
@@ -12,13 +14,15 @@ class ApiHandler extends StatefulWidget {
 }
 
 class _ApiHandlerState extends State<ApiHandler> {
-  Api call =
-      Api(url: "https://vercel-test-beta-sable-67.vercel.app/transcript");
+  Api call = Api(url: "https://quickaid-server.vercel.app/transcript");
   String _text = "Waiting for the server...";
+  GeolocationHandler location = GeolocationHandler();
+  double lat = 0, long = 0;
 
   Future<void> _getData() async {
     try {
-      String responseText = await call.sendTranscription(widget.text);
+      String responseText =
+          await call.sendTranscription(widget.text, long, lat);
       setState(() {
         _text = responseText;
       });
@@ -29,9 +33,20 @@ class _ApiHandlerState extends State<ApiHandler> {
     }
   }
 
+  void _fetchLocation() async {
+    try {
+      Position position = await location.getCurrentLocation();
+      long = position.longitude;
+      lat = position.latitude;
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    _fetchLocation();
     _getData(); // Asynchronously fetch the data when the widget is initialized
   }
 
