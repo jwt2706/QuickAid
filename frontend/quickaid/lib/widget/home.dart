@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => print("working"),
         tooltip: 'voice',
-        child: Icon(Icons.),
+        child: Icon(Icons.mic),
       ),
     );
   }
