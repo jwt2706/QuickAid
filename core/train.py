@@ -1,7 +1,7 @@
 # Transformers installation
-! pip install transformers datasets
-! pip install -U accelerate
-! pip install -U transformers
+pip install transformers datasets
+pip install -U accelerate
+pip install -U transformers
 
 pip install transformers datasets evaluate
 
