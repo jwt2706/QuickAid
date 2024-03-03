@@ -1,3 +1,6 @@
 [submodule "quickaid_server"]
 	path = quickaid_server
 	url = https://github.com/Greg-Create/quickaid_server.git
+[submodule "net"]
+	path = net
+	url = https://github.com/Greg-Create/quickaid_frontend.git

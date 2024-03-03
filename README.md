@@ -1,1 +1,1 @@
-# aid.tech
+# QuickAid
