@@ -12,7 +12,11 @@ class EmergencyContactListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(emergencyContact.name),
-      subtitle: Text('Email: ${emergencyContact.email}'),
+      subtitle: Row(children: [
+        Text('Email: ${emergencyContact.email}'),
+        Text('Phone: ${emergencyContact.phoneNumber}'),
+        Text('Relationship: ${emergencyContact.relationship}'),
+      ])
     );
   }
 }

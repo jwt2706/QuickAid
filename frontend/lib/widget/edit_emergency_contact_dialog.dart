@@ -36,10 +36,11 @@ class _EditEmergencyContactDialogState extends State<EditEmergencyContactDialog>
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Edit Contact Info'),
-      content: Row(
+      content: Column(children: [
+        Row(
         children: [
           const Text(
-            'Full Name:',
+            'Name:',
             style: TextStyle(fontSize: 16.0),
           ),
           const SizedBox(width: 10),
@@ -58,6 +59,66 @@ class _EditEmergencyContactDialogState extends State<EditEmergencyContactDialog>
           ),
         ],
       ),
+      Row(
+        children: [
+          const Text(
+            'Phone:',
+            style: TextStyle(fontSize: 16.0),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: TextField(
+              decoration: const InputDecoration(
+                hintText: 'Please enter a phone number',
+              ),
+              onChanged: (value) {
+                  setState(() {
+                    widget.emergencyContact.phoneNumber = value;
+                  });
+              },
+            ),
+          ),
+        ],
+      ),
+        Row(
+          children: [
+            const Text(
+              'Email:',
+              style: TextStyle(fontSize: 16.0),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: 'Please enter an email address',
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    widget.emergencyContact.email = value;
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            const Text(
+              'Relationship:',
+              style: TextStyle(fontSize: 16.0),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  _showRelationshipPicker(context);
+                },
+                child: const Text("Pick relationship"),
+              ),
+            ),
+          ],
+        ),
+      ]),
       actions: <Widget>[
         Row(
           children: [
@@ -85,5 +146,29 @@ class _EditEmergencyContactDialogState extends State<EditEmergencyContactDialog>
         ),
       ],
     );
+  }
+}
+
+Future<void> _showRelationshipPicker(BuildContext context) async {
+  Relationship? selectedEnum = await showModalBottomSheet<Relationship>(
+    context: context,
+    builder: (BuildContext context) {
+      return ListView.builder(
+        itemCount: Relationship.values.length,
+        itemBuilder: (context, index) {
+          final enumValue = Relationship.values[index];
+          return ListTile(
+            title: Text(enumValue.toString().split('.').last),
+            onTap: () {
+              Navigator.pop(context, enumValue);
+            },
+          );
+        },
+      );
+    },
+  );
+
+  if (selectedEnum != null) {
+    print('Selected enum: $selectedEnum');
   }
 }

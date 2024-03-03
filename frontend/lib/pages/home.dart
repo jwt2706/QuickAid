@@ -96,7 +96,7 @@ class _HomeState extends State<Home> {
   }
 
   void _navigateToContactsPage(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginPage()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Contacts()));
   }
 
   @override
