@@ -61,7 +61,8 @@ class _HomeState extends State<Home> {
           },
         );
       } else {
-        print('Speech recognition unavailable'); // Log if speech recognition is unavailable
+        print(
+            'Speech recognition unavailable'); // Log if speech recognition is unavailable
       }
     } else {
       _stopListening();
@@ -96,7 +97,8 @@ class _HomeState extends State<Home> {
   }
 
   void _navigateToContactsPage(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginPage()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 
   @override
@@ -112,12 +114,13 @@ class _HomeState extends State<Home> {
             fontSize: 30,
           ),
         ),
-        leading: ElevatedButton (
+        leading: ElevatedButton(
           child: const Icon(
-          Icons.local_hospital,
-          size: 40, // Increases the icon size
-          color: Colors.white, // Changes the icon color to red
-          ), onPressed: () {
+            Icons.local_hospital,
+            size: 40, // Increases the icon size
+            color: Colors.white, // Changes the icon color to red
+          ),
+          onPressed: () {
             _navigateToContactsPage(context);
           },
         ),
@@ -133,9 +136,10 @@ class _HomeState extends State<Home> {
                 .dstATop, // This blend mode applies the color filter on top of the image
           ),
         )),
-        child: Center( // Added a Center widget to center the text
-          child: Text(_text, style: TextStyle(fontSize: 24)), // Display the _text
-        ),
+        child: Center(
+            // Added a Center widget to center the text
+            child: TextHolder(text: _text) // Display the _text
+            ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
