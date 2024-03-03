@@ -46,18 +46,15 @@ jobs:
         with:
           channel: 'beta'  # Flutter web support is currently on the beta channel
 
-      - name: Install dependencies
-        run: |
-          cd frontend
-          flutter pub get
+      - name: Change directory
+        run: cd frontend
 
       - name: Build Web
-        run: |
-          cd frontend
-          flutter build web --release
+        run: flutter build web --release
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages  # The branch the action should deploy to.
           folder: frontend/build/web  # The folder the action should deploy.
+          token: ${{ secrets.GITHUB_TOKEN }}  # Add this line
