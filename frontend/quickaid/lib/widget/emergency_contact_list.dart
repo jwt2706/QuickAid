@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quickaid/resources/emergency_contact.dart';
+import 'package:quickaid/widget/edit_emergency_contact_dialog.dart';
 import 'package:quickaid/widget/emergency_contact_list_item.dart';
 
 class EmergencyContactList extends StatefulWidget {
@@ -31,7 +32,14 @@ class EmergencyContactListState extends State<EmergencyContactList> {
             showDialog(
               context: context,
               builder: (BuildContext context) {
-                return EditEmergencyContactDialog(emergencyContact: emergencyContact);
+                return EditEmergencyContactDialog(
+                          emergencyContact: emergencyContact,
+                          onSave: (updatedContact) {
+                            setState(() {
+                              emergencyContact = updatedContact;
+                            });
+                          },
+                       );
               },
             );
           },
@@ -43,54 +51,3 @@ class EmergencyContactListState extends State<EmergencyContactList> {
     );
   }
 }
-
-class EditEmergencyContactDialog extends StatelessWidget {
-  const EditEmergencyContactDialog({
-    super.key,
-    required this.emergencyContact,
-  });
-
-  final EmergencyContact emergencyContact;
-
-  @override
-  Widget build(BuildContext context) {
-    var newEmergencyContact = emergencyContact;
-    return AlertDialog(
-      title: const Text('Edit Contact Info'),
-      content: 
-      Row(children: [
-          const Text('Full Name:', style: TextStyle(fontSize: 16.0),),
-          const SizedBox(width: 10),
-          Expanded(
-            child: TextField(
-              decoration: const InputDecoration(
-                hintText: 'Please enter a full name',
-              ),
-              onChanged: (value) {
-                newEmergencyContact.name = value;
-              },
-            ),
-          ),
-        ],
-      ),
-      actions: <Widget>[
-        Row(children: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              // emergencyContact = newEmergencyContact;
-              Navigator.of(context).pop(); 
-            },
-            child: const Text('Save'),
-          ),
-        ]),
-      ],
-    );
-  }
-}
-
