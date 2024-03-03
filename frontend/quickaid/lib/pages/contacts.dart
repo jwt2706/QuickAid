@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quickaid/resources/emergency_contact.dart';
+import 'package:quickaid/widget/add_emergency_contact_dialog.dart';
 import 'package:quickaid/widget/emergency_contact_list.dart';
 
 class Contacts extends StatefulWidget {
@@ -32,9 +33,18 @@ class _ContactsState extends State<Contacts> {
             color: Colors.white, // Changes the icon color to white
           ),
           onPressed: () {
-            setState(() {
-              emergencyContacts.add(EmergencyContact("dan", "...", "d@gmail.com", Relationship.friend));
-            });
+            showDialog(
+                context: context, 
+                builder: (BuildContext context) {
+                return AddEmergencyContactDialog(
+                  onSave: (newContact) {
+                    setState(() {
+                      emergencyContacts.add(newContact);
+                    });
+                  }
+                );
+              },
+            );
           },
         ),
       ],
