@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
 import 'package:auth0_flutter/auth0_flutter.dart';
-import 'package:quickaid/resources/contacts.dart'; 
+import 'package:quickaid/resources/contacts.dart';
+
 const appScheme = 'quickaid';
 
 /// -----------------------------------
-///           Profile Widget           
+///           Profile Widget
 /// -----------------------------------
 class Profile extends StatelessWidget {
   final Future<void> Function() logoutAction;
   final UserProfile? user;
 
-  const Profile(this.logoutAction, this.user, {final Key? key}) : super(key: key);
+  const Profile(this.logoutAction, this.user, {final Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,13 +47,14 @@ class Profile extends StatelessWidget {
 }
 
 /// -----------------------------------
-///            Login Widget           
+///            Login Widget
 /// -----------------------------------
 class Login extends StatelessWidget {
   final Future<void> Function() loginAction;
   final String loginError;
 
-  const Login(this.loginAction, this.loginError, {final Key? key}) : super(key: key);
+  const Login(this.loginAction, this.loginError, {final Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +74,10 @@ class Login extends StatelessWidget {
 }
 
 /// -----------------------------------
-///                 App                
+///                 App
 /// -----------------------------------
 
-void main() => runApp(const LoginPage());
+// void main() => runApp(const LoginPage());
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -84,7 +87,7 @@ class LoginPage extends StatefulWidget {
 }
 
 /// -----------------------------------
-///              App State            
+///              App State
 /// -----------------------------------
 
 class _LoginPageState extends State<LoginPage> {
@@ -93,18 +96,19 @@ class _LoginPageState extends State<LoginPage> {
   Credentials? _credentials;
   late Auth0 auth0;
 
-   @override
-     void initState() {
+  @override
+  void initState() {
     super.initState();
 
-    auth0 = Auth0('dev-s3wi816arvcpujfw.us.auth0.com', 'M7Rkt5TIMDyt4IovW1va9VGFy0eR14Oa');
+    auth0 = Auth0('dev-s3wi816arvcpujfw.us.auth0.com',
+        'M7Rkt5TIMDyt4IovW1va9VGFy0eR14Oa');
     errorMessage = '';
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
           centerTitle: true,
           title: const Text(
@@ -117,7 +121,8 @@ class _LoginPageState extends State<LoginPage> {
         ),
         body: Column(children: [
           const Spacer(),
-          const Text("Please login to view information about your emergency contacts."),
+          const Text(
+              "Please login to view information about your emergency contacts."),
           Center(
             child: isBusy
                 ? const CircularProgressIndicator()
@@ -126,12 +131,12 @@ class _LoginPageState extends State<LoginPage> {
                     : Login(loginAction, errorMessage),
           ), // 👈 Updated code
           const Spacer(),
-        ])
-      );
+        ]));
   }
-  
+
   void _navigateToContactsPage(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Contacts()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const Contacts()));
   }
 
   Future<void> loginAction() async {
@@ -141,7 +146,8 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     try {
-      final Credentials credentials = await auth0.webAuthentication(scheme: appScheme).login();
+      final Credentials credentials =
+          await auth0.webAuthentication(scheme: appScheme).login();
 
       setState(() {
         isBusy = false;
@@ -157,6 +163,7 @@ class _LoginPageState extends State<LoginPage> {
       });
     }
   }
+
   Future<void> logoutAction() async {
     await auth0.webAuthentication(scheme: appScheme).logout();
 

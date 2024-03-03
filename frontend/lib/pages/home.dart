@@ -107,23 +107,30 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
-        title: const Text(
-          'QuickAid',
-          style: TextStyle(
+        title: Row(
+          mainAxisSize: MainAxisSize.min, // Use min to center the row contents
+          children: <Widget>[
+            Icon(Icons.local_hospital,
+                size: 40, color: Colors.white), // Your icon
+            SizedBox(width: 8), // Space between icon and text
+            Text(
+              'QuickAid',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+              ),
+            ),
+          ],
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.person),
             color: Colors.white,
-            fontSize: 30,
+            onPressed: () {
+              _navigateToContactsPage(context);
+            },
           ),
-        ),
-        leading: ElevatedButton(
-          child: const Icon(
-            Icons.local_hospital,
-            size: 40, // Increases the icon size
-            color: Colors.white, // Changes the icon color to red
-          ),
-          onPressed: () {
-            _navigateToContactsPage(context);
-          },
-        ),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -137,9 +144,9 @@ class _HomeState extends State<Home> {
           ),
         )),
         child: Center(
-            // Added a Center widget to center the text
-            child: TextHolder(text: _text) // Display the _text
-            ),
+          // Added a Center widget to center the text
+          child: TextHolder(text: _text), // Display the _text
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
