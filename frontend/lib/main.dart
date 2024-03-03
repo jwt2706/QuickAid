@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:quickaid/pages/home.dart';
 import 'package:quickaid/pages/instructions.dart';
+import 'package:quickaid/pages/login_page.dart';
 import 'package:quickaid/pages/response.dart';
 
 void main() {
@@ -32,7 +33,7 @@ class MainApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const Home(),
+        '/': (context) => const LoginPage(),
         '/instruct': (context) => const Instructions(),
       },
     );

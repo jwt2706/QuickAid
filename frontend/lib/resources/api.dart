@@ -8,6 +8,7 @@ class Api {
 
   Future<String> sendTranscription(
       String transcriptionText, double long, double lat) async {
+    print('$long $lat');
     final headers = {"Content-Type": "application/json"};
     final jsonBody = json
         .encode({"transcript": transcriptionText, "long": long, "lat": lat});

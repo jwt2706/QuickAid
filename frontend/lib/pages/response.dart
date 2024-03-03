@@ -33,6 +33,7 @@ class _ApiHandlerState extends State<ApiHandler> {
         _text = "Failed to fetch data from the server: $e";
       });
     }
+    await speakText();
   }
 
   Future<void> _fetchLocation() async {
@@ -48,7 +49,12 @@ class _ApiHandlerState extends State<ApiHandler> {
   @override
   void initState() {
     super.initState();
-    _getData(); // Asynchronously fetch the data when the widget is initialized
+    _getData();
+  }
+
+  Future<void> speakText() async {
+    // await _getData(); // Asynchronously fetch the data when the widget is initialized
+
     SpeakText speak = SpeakText(textToSpeak: _text);
     speak.initializeTTS();
     speak.speak();
@@ -77,12 +83,14 @@ class _ApiHandlerState extends State<ApiHandler> {
         body: TextHolder(text: _text),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.pop(context); // This line navigates back to the previous screen
+            Navigator.pop(
+                context); // This line navigates back to the previous screen
           },
           child: Icon(Icons.home), // This is the home icon
           backgroundColor: Theme.of(context).primaryColor,
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, // This line positions the FAB at the bottom right
+        floatingActionButtonLocation: FloatingActionButtonLocation
+            .endFloat, // This line positions the FAB at the bottom right
       ),
     );
   }
