@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:auth0_flutter/auth0_flutter.dart'; 
+import 'package:auth0_flutter/auth0_flutter.dart';
+import 'package:quickaid/resources/contacts.dart'; 
 const appScheme = 'quickaid';
 
 /// -----------------------------------
@@ -120,6 +121,10 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+  
+  void _navigateToContactsPage(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Contacts()));
+  }
 
   Future<void> loginAction() async {
     setState(() {
@@ -133,6 +138,7 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         isBusy = false;
         _credentials = credentials;
+        _navigateToContactsPage(context);
       });
     } on Exception catch (e, s) {
       debugPrint('login error: $e - stack: $s');

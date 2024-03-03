@@ -11,8 +11,9 @@ class EmergencyContactListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(emergencyContact.name),
-      subtitle: Row(children: [
+      title: Center(child: 
+      Text(emergencyContact.name)),
+      subtitle: Column(children: [
         Text('Email: ${emergencyContact.email}'),
         Text('Phone: ${emergencyContact.phoneNumber}'),
         Text('Relationship: ${emergencyContact.relationship}'),
