@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button id="myButton">Click me</button>
+
+<script>
+document.getElementById("myButton").addEventListener("click", function() {
+    // Define the URL
+    var url = "http://localhost:8080/transcribe";
+
+    // Define the headers for the POST request
+    var headers = {
+        'Content-Type': 'application/json'
+    };
+
+    // Define the data for the POST request
+    var data = {
+        'transcript': 'That man just got burned by the stove! What do I do?',
+        'lat': 40.7128,  // Replace with actual latitude
+        'long': -74.0060  // Replace with actual longitude
+    };
+
+    // Send the POST request
+    fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+    console.log('Response status code:', data.status);
+    console.log('Response content:', data?.message);
+
+    // Check if data object and messages array exist
+    if (data && data.data && data.data.messages) {
+        console.log('Messages array:', data.data.messages);
+        
+        // Log each message
+        data.data.messages.forEach((message, index) => {
+            console.log(`Message ${index}:`, message.content);
+        });
+    }
+})
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+</script>
+
+</body>
+</html>
