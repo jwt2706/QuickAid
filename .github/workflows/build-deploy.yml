@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - master  # Trigger the action on push in master branch
+      - main  # Trigger the action on push in master branch
 
 jobs:
   build-apk:
