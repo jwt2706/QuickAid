@@ -20,7 +20,7 @@ jobs:
 
       - name: Build Flutter web
         run: |
-          cd ./frontend/quickaid
+          cd ./frontend
           flutter pub get
           flutter build web
 
@@ -28,4 +28,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/quickaid/build/web
+          publish_dir: ./frontend/build/web
