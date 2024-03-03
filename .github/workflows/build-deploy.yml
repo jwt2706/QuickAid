@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Build and Deploy
 
 on:
   push:
@@ -6,7 +6,35 @@ on:
       - master  # Trigger the action on push in master branch
 
 jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Flutter actions
+        uses: subosito/flutter-action@v1
+        # No need to specify a version, it will set up the latest stable version by default
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          flutter pub get
+
+      - name: Build APK
+        run: |
+          cd frontend
+          flutter build apk --target-platform android-arm64
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app
+          path: frontend/build/app/outputs/flutter-apk/app-release.apk
+
   build-and-deploy:
+    needs: build-apk
     runs-on: ubuntu-latest
 
     steps:
