@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:quickaid/pages/login_page.dart';
 import 'package:quickaid/pages/response.dart';
 import 'package:quickaid/resources/contacts.dart';
 import 'package:quickaid/resources/local_storage.dart';
@@ -95,7 +96,7 @@ class _HomeState extends State<Home> {
   }
 
   void _navigateToContactsPage(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Contacts()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 
   @override

@@ -7,6 +7,7 @@ environment:
   sdk: ">=3.2.3 <4.0.0"
 
 dependencies:
+  auth0_flutter: ^1.1.0
   avatar_glow: ^3.0.1
   flutter:
     sdk: flutter
