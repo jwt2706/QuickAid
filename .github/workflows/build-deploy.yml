@@ -46,11 +46,15 @@ jobs:
         with:
           channel: 'beta'  # Flutter web support is currently on the beta channel
 
-      - name: Change directory
-        run: cd frontend
+      - name: Install dependencies
+        run: |
+          cd frontend
+          flutter pub get
 
       - name: Build Web
-        run: flutter build web --release
+        run: |
+          cd frontend
+          flutter build web --release
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
