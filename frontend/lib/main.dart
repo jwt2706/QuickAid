@@ -15,12 +15,10 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Material App with Theme',
-      // Here begins the spell of theming
+      title: 'Emergency First Aid Help',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.red,
-          // ···
           brightness: Brightness.light,
         ),
         // Font family, the scribe that pens the text in your realm
@@ -36,7 +34,6 @@ class MainApp extends StatelessWidget {
       routes: {
         '/': (context) => const Home(),
         '/instruct': (context) => const Instructions(),
-        // '/api': (context) => const ApiHandler(),
       },
     );
   }

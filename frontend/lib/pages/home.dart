@@ -130,7 +130,7 @@ class _HomeState extends State<Home> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: handleMic,
-        child: Icon(_isMicOn ? Icons.mic : Icons.stop),
+        child: Icon(_isMicOn ? Icons.stop : Icons.mic),
       ),
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).primaryColor,
