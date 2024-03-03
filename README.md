@@ -1,1 +1,6 @@
 # QuickAid
+
+Life's unexpected turns can thrust us into pivotal moments where we hold the power to save lives. Recognizing first-hand the profound impact of First Aid knowledge, we delved into an extensive research. Our research revealed that shockingly, only 18% of Canadians are certified in first aid source. This revelation served as our inspiration. We decided to ensure that everyone possess the skills to administer First-Aid when needed, as well as expedite emergency response times. The Product? QuickAid – a way of bridging the gap between crucial moments and swift assistance, ultimately saving more lives.
+
+## What it does
+QuickAid has two main functions, both of which serve to help save lives. The first major part is called "Quick". Quick is an autonomous system that quickly and efficiently communicates vital incident information to Emergency-Service via phone call, when it deems necessary. The second major component of QuickAid is Aid, "Artificial Intelligence Doctor" our model that communicates vital First-Aid knowledge in times of dire need. This bot is responsible for providing people with the First-Aid knowledge necessary to potentially save other lives as well as their own. Together these two components help fulfill QuickAid's core mission: To save as many lives as possible.
