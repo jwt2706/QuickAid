@@ -124,7 +124,7 @@ class _HomeState extends State<Home> {
           ),
         )),
         child: Center( // Added a Center widget to center the text
-          child: Text(_text), // Display the _text
+          child: Text(_text, style: TextStyle(fontSize: 24)), // Display the _text
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
