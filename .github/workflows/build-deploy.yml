@@ -1,36 +1,31 @@
-name: Deploy to GitHub Pages
+name: Build APK
 
 on:
   push:
     branches:
-      - main  # Set a branch to trigger deployment
+      - main  # Set a branch to trigger this workflow.
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - name: Set up Flutter actions
+        uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.0.6'  # specify the Flutter version
 
-      - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@v1
-        with:
-          sdk: '3.2.3'  # specify the Dart SDK version
+      - name: Install dependencies
+        run: flutter pub get
 
-      - name: Build Flutter web
-        run: |
-          cd ./frontend
-          flutter pub get
-          flutter build web
+      - name: Build APK
+        run: flutter build apk --target-platform android-arm64
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/build/web
+          name: app
+          path: build/app/outputs/flutter-apk/app-release.apk
