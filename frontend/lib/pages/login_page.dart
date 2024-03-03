@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
      void initState() {
     super.initState();
 
-    auth0 = Auth0('{dev-s3wi816arvcpujfw.us.auth0.com}', '{M7Rkt5TIMDyt4IovW1va9VGFy0eR14Oa}');
+    auth0 = Auth0('dev-s3wi816arvcpujfw.us.auth0.com', 'M7Rkt5TIMDyt4IovW1va9VGFy0eR14Oa');
     errorMessage = '';
   }
 
