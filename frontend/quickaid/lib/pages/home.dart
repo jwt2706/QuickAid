@@ -13,11 +13,33 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+class IconButtonToggle extends StatefulWidget {
+  @override
+  _IconButtonToggleState createState() => _IconButtonToggleState();
+}
+
+class _IconButtonToggleState extends State<IconButtonToggle> {
+  bool _isMicOn = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(_isMicOn ? Icons.mic : Icons.stop),
+      onPressed: () {
+        setState(() {
+          _isMicOn = !_isMicOn;
+        });
+      },
+    );
+  }
+}
+
 class _HomeState extends State<Home> {
   final GlobalKey<MicFloatingButtonState> micKey =
       GlobalKey<MicFloatingButtonState>();
   final stt.SpeechToText _speech = stt.SpeechToText();
   bool _isListening = false;
+  bool _isMicOn = false;
   String _text = 'Press the button and start speaking';
 
   void _listen() async {
@@ -29,12 +51,15 @@ class _HomeState extends State<Home> {
           onResult: (result) {
             setState(() {
               _text = result.recognizedWords;
+              print('Recognized Words: $_text'); // Log the recognized words
               if (result.finalResult) {
                 _stopListening();
               }
             });
           },
         );
+      } else {
+        print('Speech recognition unavailable'); // Log if speech recognition is unavailable
       }
     } else {
       _stopListening();
@@ -45,6 +70,7 @@ class _HomeState extends State<Home> {
     _speech.stop();
     setState(() => _isListening = false);
     micKey.currentState?.stopAnimation();
+    print('Stopped listening'); // Log when the app stops listening
   }
 
   void moveNextPage() {
@@ -58,14 +84,13 @@ class _HomeState extends State<Home> {
 
   void handleMic() {
     setState(() {
-      // micOn = !micOn;
-      if (!_isListening) {
-        micKey.currentState?.startAnimation();
+      _isMicOn = !_isMicOn;
+      if (_isMicOn) {
+        _listen();
       } else {
-        micKey.currentState?.stopAnimation();
+        _stopListening();
       }
     });
-    _listen();
   }
 
   @override
@@ -75,7 +100,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
         title: const Text(
-          'Quickaid',
+          'QuickAid',
           style: TextStyle(
             color: Colors.white,
             fontSize: 30,
@@ -98,9 +123,15 @@ class _HomeState extends State<Home> {
                 .dstATop, // This blend mode applies the color filter on top of the image
           ),
         )),
-        child: TextHolder(text: _text),
+        child: Center( // Added a Center widget to center the text
+          child: Text(_text), // Display the _text
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: handleMic,
+        child: Icon(_isMicOn ? Icons.mic : Icons.stop),
+      ),
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).primaryColor,
         shape: const CircularNotchedRectangle(),
@@ -123,10 +154,6 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-      ),
-      floatingActionButton: MicFloatingButton(
-        key: micKey,
-        onPressed: handleMic,
       ),
     );
   }
