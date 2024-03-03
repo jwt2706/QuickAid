@@ -103,10 +103,19 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Theme.of(context).primaryColor,
+          centerTitle: true,
+          title: const Text(
+            'Emergency Contacts',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+            ),
+          ),
+        ),
         body: Column(children: [
-          
           const Spacer(),
           const Text("Please login to view information about your emergency contacts."),
           Center(
@@ -118,8 +127,7 @@ class _LoginPageState extends State<LoginPage> {
           ), // 👈 Updated code
           const Spacer(),
         ])
-      ),
-    );
+      );
   }
   
   void _navigateToContactsPage(BuildContext context) {
