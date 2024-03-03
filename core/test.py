@@ -4,10 +4,16 @@ import json
 # Define the endpoint URL
 url = "http://localhost:5000/predict"
 
-# Define the question and context
+# Ask for the question
+question = input("Enter your question: ")
+
+# Read the context from a text file
+with open('context.txt', 'r') as file:
+    context = file.read()
+
 data = {
-    "question": "What is the capital of France?",
-    "context": "France, in Western Europe, encompasses medieval cities, alpine villages and Mediterranean beaches. Paris, its capital, is famed for its fashion houses, classical art museums including the Louvre and monuments like the Eiffel Tower."
+    "question": question,
+    "context": context
 }
 
 # Send the POST request
