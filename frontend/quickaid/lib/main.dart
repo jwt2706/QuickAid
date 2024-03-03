@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:quickaid/pages/home.dart';
 import 'package:quickaid/pages/instructions.dart';
-import 'package:quickaid/pages/respnose.dart';
+import 'package:quickaid/pages/response.dart';
 
 void main() {
   runApp(const MainApp());

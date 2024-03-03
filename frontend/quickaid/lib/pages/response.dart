@@ -75,6 +75,14 @@ class _ApiHandlerState extends State<ApiHandler> {
           ),
         ),
         body: TextHolder(text: _text),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pop(context); // This line navigates back to the previous screen
+          },
+          child: Icon(Icons.home), // This is the home icon
+          backgroundColor: Theme.of(context).primaryColor,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, // This line positions the FAB at the bottom right
       ),
     );
   }
