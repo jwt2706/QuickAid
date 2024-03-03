@@ -27,7 +27,6 @@ class MicFloatingButtonState extends State<MicFloatingButton>
       parent: _controller,
       curve: Curves.easeInOut,
     ));
-    stopAnimation();
   }
 
   void startAnimation() {
