@@ -4,7 +4,12 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-  - package-ecosystem: "dart"
+    target-branch: "main"
+  - package-ecosystem: "pub"
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "Dependencies"
+      include: "scope"
+    target-branch: "main"
