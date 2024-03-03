@@ -15,8 +15,7 @@ jobs:
 
       - name: Set up Flutter actions
         uses: subosito/flutter-action@v1
-        with:
-          flutter-version: '2.0.6'  # specify the Flutter version
+        # No need to specify a version, it will set up the latest stable version by default
 
       - name: Install dependencies
         run: |
