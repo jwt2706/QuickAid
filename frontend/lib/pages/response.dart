@@ -53,8 +53,6 @@ class _ApiHandlerState extends State<ApiHandler> {
   }
 
   Future<void> speakText() async {
-    // await _getData(); // Asynchronously fetch the data when the widget is initialized
-
     SpeakText speak = SpeakText(textToSpeak: _text);
     speak.initializeTTS();
     speak.speak();
